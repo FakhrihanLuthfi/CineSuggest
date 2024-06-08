@@ -10,7 +10,6 @@ async function getPopularMovies(apiKey) {
   }
 }
 
-// Menggunakan fungsi untuk mendapatkan data film terpopuler
 const apiKey = 'YOUR_API_KEY';
 getPopularMovies(apiKey)
   .then(movies => console.log('Popular Movies:', movies))
