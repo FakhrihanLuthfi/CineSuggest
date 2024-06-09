@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "express": "^4.19.2"
+    "axios": "^1.7.2",
+    "express": "^4.19.2",
+    "validatorjs": "^3.22.1"
   },
   "name": "cinesuggest",
   "version": "1.0.0",
