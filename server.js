@@ -15,4 +15,4 @@ application.use(express.json())
 
 application.use(router)
 
-application.listen(3000)
+application.listen(process.env.PORT)
