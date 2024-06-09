@@ -28,11 +28,11 @@ module.exports = {
 			})
 
 			const movies = await axios({
-				url: "https://api.themoviedb.org/3/movie/popular",
+				url: `${process.env.TMDB_API_BASE_URL}/movie/popular`,
 				method: "get",
 				headers: {
 					"content-type": "application/json",
-					authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYWIwN2Q1YzJhMDc2M2FkMjU5ZDY2NmRiNmQ1MDk3MiIsInN1YiI6IjY2NjU1NzM5ZTQ2MjY3OGY3ZTEzODA1ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.N3--_ntJ3Z351IaHB0hWljSgvIt7B4jmOBJxQrEVpmQ`,
+					authorization: `Bearer ${process.env.TMDB_API_ACCESS_TOKEN}`,
 				},
 				params: {
 					language: "en-US",
