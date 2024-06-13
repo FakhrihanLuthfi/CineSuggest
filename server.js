@@ -4,6 +4,7 @@
 
 "use strict"
 
+require("dotenv").config()
 const express = require("express")
 
 const router = require("./src/routes/router")
@@ -14,4 +15,4 @@ application.use(express.json())
 
 application.use(router)
 
-application.listen(3000)
+application.listen(process.env.PORT)
