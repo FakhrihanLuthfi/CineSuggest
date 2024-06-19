@@ -40,7 +40,7 @@ module.exports = {
 				return response.data.results.map(function (movie) {
 					return {
 						id: movie.id,
-						poster: movie.poster_path,
+						poster: `https://image.tmdb.org/t/p/original${movie.poster_path}`,
 						title: movie.original_title,
 					}
 				})
@@ -70,12 +70,48 @@ module.exports = {
 
 				return {
 					id: movie.id,
-					poster: movie.poster_path,
+					poster: `https://image.tmdb.org/t/p/original${movie.poster_path}`,
 					title: movie.original_title,
 				}
 			})
 
 			return response.status(200).send(popularMovie)
+		} catch (error) {
+			return next(error)
+		}
+	},
+
+	getMovieDetail: async function (request, response, next) {
+		try {
+			let requestInputs = await validatorjs(
+				{
+					movieId: request.params.movieId,
+				},
+				{
+					movieId: "required|string",
+				}
+			)
+
+			const movieDetail = await axios({
+				url: `${process.env.TMDB_API_BASE_URL}/movie/${requestInputs.movieId}`,
+				method: "get",
+				headers: {
+					"content-type": "application/json",
+					authorization: `Bearer ${process.env.TMDB_API_ACCESS_TOKEN}`,
+				},
+				params: {
+					language: "en-US",
+				},
+			}).then(function (response) {
+				return {
+					id: response.data.id,
+					poster: `https://image.tmdb.org/t/p/original${response.data.poster_path}`,
+					title: response.data.original_title,
+					overview: response.data.overview,
+				}
+			})
+
+			return response.status(200).send(movieDetail)
 		} catch (error) {
 			return next(error)
 		}
@@ -138,7 +174,7 @@ module.exports = {
 					.map(function (movie) {
 						return {
 							movieId: movie.id,
-							poster: movie.poster_path,
+							poster: `https://image.tmdb.org/t/p/original${movie.poster_path}`,
 							title: movie.original_title,
 						}
 					})

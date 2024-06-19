@@ -14,5 +14,6 @@ router.get("/search", movieController.searchMovies)
 router.get("/popular", movieController.getPopularMovie)
 router.get("/recommendations", movieController.getMovieRecomendations)
 router.get("/prediction", movieController.getMoviePrediction)
+router.get("/:movieId/detail", movieController.getMovieDetail)
 
 module.exports = router
