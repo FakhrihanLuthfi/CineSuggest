@@ -138,7 +138,7 @@ module.exports = {
 				inputArray[knownGenres.indexOf(likedGenres[a])] = 1
 			}
 
-			const model = await tfjs.loadLayersModel(`file://${path.join(__dirname, "../../model/genre/model.json")}`)
+			const model = await tfjs.loadLayersModel("https://storage.googleapis.com/cine-suggest/models/genre/model.json")
 
 			const inputTensor = tfjs.tensor(inputArray)
 			const reshapedInput = inputTensor.reshape([1, 19])
@@ -226,7 +226,7 @@ module.exports = {
 
 			const tokenized = baseToken.concat(foundedWordIndex)
 
-			const model = await tfjs.loadLayersModel(`file://${path.join(__dirname, "../../model/overview/model.json")}`)
+			const model = await tfjs.loadLayersModel("https://storage.googleapis.com/cine-suggest/models/overview/model.json")
 
 			const inputData = tfjs.tensor2d(tokenized, [1, 100])
 
